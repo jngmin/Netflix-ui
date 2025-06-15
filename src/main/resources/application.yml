@@ -3,7 +3,7 @@ spring:
     name: netflix-ui    
     
   datasource:
-    url: jdbc:mysql://223.130.162.28:30100/bookdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&authenticationPlugins=com.mysql.cj.protocol.a.authentication.MysqlNativePasswordPlugin
+    url: jdbc:mysql://netflix-db.czscamskm91f.ap-northeast-2.rds.amazonaws.com:3306/bookdb
     username: root
     password: rootpassword
     driver-class-name: com.mysql.cj.jdbc.Driver

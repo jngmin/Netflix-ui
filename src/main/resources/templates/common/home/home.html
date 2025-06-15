@@ -53,8 +53,8 @@
           <div class="beginword1">
             <h1>
               영화와 시리즈를 무제한으로.
-              <span th:if="${session.type != null and session.type == 'admin'}"
-                    th:text="'(' + session.type + '계정)'"></span>
+              <span th:if="${userType != null and userType == 'admin'}"
+      th:text="|${userType}계정|"></span>
             </h1>
           </div>
           <div class="beginword2">

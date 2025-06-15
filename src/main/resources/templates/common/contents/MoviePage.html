@@ -36,16 +36,8 @@
     <a href = "/"><li class="prinavtab" >홈</li></a>
     <a href = "/series"><li class="prinavtab">시리즈</li></a>
     <a href = "/movie"><li class="prinavtab">영화</li></a>
-<%--     <%
 
-String type = (String)session.getAttribute("type");
-
-	if((type.equals("admin"))){
-	    
-	
-%>
- <a href = "/contents/form"><li class="prinavtab">등록하기</li></a>
-<%} %> --%>
+ <a th:if="${userType == 'admin'}" href="/contents/form"><li class="prinavtab">등록하기</li></a>
   </ul>
   <div class="endnavbar">
     <div class="endnavelement">
@@ -101,37 +93,28 @@ String type = (String)session.getAttribute("type");
     </div>
    </div>
 <!-- 필요한 장르를 배열처럼 직접 나열 -->
-<div th:each="genre : ${genres}">
-    <!-- 디버깅용 콘텐츠 수 출력 -->
-    <p th:text="'장르: ' + ${genre} + ' / 콘텐츠 수: ' + ${#lists.size(contentsByGenre.get(genre))}">
-        장르: genre / 콘텐츠 수: 0
-    </p>
-
+<div th:each="genre : ${genres}" th:style="'width: 100%; display: block; max-width:800px;'">
     <div class="movie-row">
         <div class="movie-row__title" th:text="${genre}">장르명</div>
-
-        <div class="movie-row__carousel" th:if="${!#lists.isEmpty(contentsByGenre.get(genre))}">
-            <!-- Swiper 영역 -->
-            <div class="swiper" th:class="'swiper swiper-' + ${genre}">
-                <div class="swiper-wrapper">
-                    <!-- 여기에 th:each 추가! -->
-                    <div th:each="content : ${contentsByGenre.get(genre)}" class="swiper-slide">
-                        <a th:href="@{/contents/detail(contents_id=${content.id})}" style="width:100%; height:100%">
-                            <img class="swiperimg" th:src="@{${content.posterImgUrl}}" />
-                        </a>
+        
+        <div class="movie-row__carousel" th:if="${!#lists.isEmpty(contentsByGenre.get(genre))}" >
+            <!-- swiper-container 클래스 제거 -->
+            <div class="carousel-container">
+                <!-- 중요: 여기가 메인 swiper 요소 -->
+                <div th:class="'swiper swiper-' + ${genre}">
+                    <div class="swiper-wrapper">
+                        <div th:each="content : ${contentsByGenre.get(genre)}" class="swiper-slide">
+                            <a th:href="@{/contents/detail(contents_id=${content.id})}">
+                                <img class="swiperimg" th:src="@{${content.posterImgUrl}}" />
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-scrollbar"></div>
+                
+                <!-- 네비게이션 버튼 -->
+                <div th:class="'swiper-button-prev prevbtn-' + ${genre}"></div>
+                <div th:class="'swiper-button-next nextbtn-' + ${genre}"></div>
             </div>
-            <!-- Swiper 네비게이션 버튼 -->
-            <div th:class="'swiper-button-prev prevbtn-' + ${genre}"></div>
-            <div th:class="'swiper-button-next nextbtn-' + ${genre}"></div>
-        </div>
-
-        <!-- 콘텐츠가 없을 경우 -->
-        <div class="movie-row__empty" th:if="${#lists.isEmpty(contentsByGenre.get(genre))}">
-            <p>해당 장르에 콘텐츠가 없습니다.</p>
         </div>
     </div>
 </div>

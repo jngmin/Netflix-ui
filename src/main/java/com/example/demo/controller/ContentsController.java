@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.client.ContentsClient;
 import com.example.demo.entity.Contents;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import com.example.demo.dto.contents.*;
@@ -31,7 +32,7 @@ public class ContentsController {
 	private ContentsClient contentsClient;
 
 	@GetMapping("/movie")
-	public String getMovieList(Model model) {
+	public String getMovieList(HttpSession session, Model model) {
 		List<ContentResponse> contentsList = contentsClient.getAllContents();
 		List<String> genres = List.of("thriler", "romance", "action", "comedy", "horror");
 		System.out.println("전체 콘텐츠 수: " + contentsList.size());
@@ -52,6 +53,8 @@ public class ContentsController {
 
 		model.addAttribute("genres", genres);
 		model.addAttribute("contentsByGenre", contentsByGenre);
+	    model.addAttribute("userType", session.getAttribute("type"));
+
 		return "common/contents/MoviePage";
 	}
 
@@ -128,6 +131,8 @@ public class ContentsController {
 			@RequestParam("id") Long id, 
 			@ModelAttribute ContentRequest requestDto,
 			@RequestPart(value = "contentsFile", required = false) MultipartFile contentsFile) {
+		System.out.println(requestDto);
+		System.out.println(id);
 		ContentResponse response =  contentsClient.updateContentInfo(id, requestDto);
 		contentsClient.uploadPoster(response.getId(), contentsFile);
 		return "redirect:/";

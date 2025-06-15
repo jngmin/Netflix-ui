@@ -2,6 +2,7 @@ package com.example.demo.client;
 
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.dto.user.LoginRequest;
@@ -28,6 +29,9 @@ public interface UserClient {
     // 로그아웃
     @PostMapping("/logout")
     void logout();
+    
+    @PostMapping("/check-password")
+    public ResponseEntity<Boolean> checkPassword(@RequestBody LoginRequest requestDto);
 
     // 사용자 정보 조회 (마이페이지)
     @GetMapping("/{id}/mypage")

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>게시판 수정 페이지</title>
+  <title>콘텐츠 수정 페이지</title>
   <style>
     div.container {
       width: 1000px;
@@ -62,7 +62,7 @@
 </head>
 <body>
   <div class="container">
-    <p class="title">Spring Boot로 만들어보는 게시판</p>
+    <p class="title">콘텐츠 수정</p>
 
     <form id="add_form" th:action="@{/contents/modify}" method="post" enctype="multipart/form-data">
       <input type="hidden" name="id" th:value="${contents.id}" />

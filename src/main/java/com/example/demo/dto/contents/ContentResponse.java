@@ -30,6 +30,7 @@ public class ContentResponse {
 		this.year = content.getYear();
 		this.running = content.getRunning();
 		this.summary = content.getSummary();
+		this.hits = content.getHits();
 		this.kind = content.getKind();
 		this.posterImgUrl = String.format("%s/%s/%s", baseUrl, bucketName, content.getPosterImgSavePath());
 	}

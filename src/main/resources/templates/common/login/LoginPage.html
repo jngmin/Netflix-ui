@@ -12,7 +12,7 @@
       <header>
         <a th:href="@{/}">
           <div class="icon">
-            <img th:src="@{/web/images/headericon.png}" alt="header icon" />
+            <img th:src="@{/images/headericon.png}" alt="header icon" />
           </div>
         </a>
       </header>
@@ -97,7 +97,7 @@
         },
         error: function(xhr, status, error){
           console.error('에러 발생:', xhr.responseText || error);
-          alert('로그인 중 문제가 발생했습니다.');
+          alert('로그인 중 문제가 발생했습니다. 아이디와 비밀번호를 확인하세요');
         }
       });
     });

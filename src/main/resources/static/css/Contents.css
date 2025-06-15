@@ -267,8 +267,10 @@ body{
     overflow: hidden;
 }
 .swiper-slide {
-  flex-shrink: 0;
-  height: 180px;
+    width: 200px !important; /* 원하는 크기로 설정 */
+    flex-shrink: 0 !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
 }
 .swiperimg {
     width: 100%;

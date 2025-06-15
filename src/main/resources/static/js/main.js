@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Initializing Swiper for:', genre);
                 
                 new Swiper('.swiper-' + genre, {
-                    slidesPerView: 3,
+                    slidesPerView: 5,
+                    slidesPerGroup: 3,
                     spaceBetween: 20,
                     freeMode: false,
                     navigation: {
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             spaceBetween: 15
                         },
                         1024: {
-                            slidesPerView: 3,
+                            slidesPerView: 5,
                             spaceBetween: 20
                         }
                     }

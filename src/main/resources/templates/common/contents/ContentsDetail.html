@@ -114,13 +114,13 @@ div.check-wrap div.check-form {
     </div>
 
     <div class="button-area">
-      <div th:if="${session.type == 'admin'}">
-        <a class="button left btn-action" data-action-type="modify">수정</a>
-        <a class="button left btn-action" data-action-type="delete">삭제</a>
-        <a class="button" th:href="@{/contents/form}">등록하기</a>
-      </div>
-      <a class="button" onclick="goBack()">뒤로가기</a>
-    </div>
+  <div th:if="${session.type == 'admin'}" style="display: inline;">
+    <a class="button btn-action" data-action-type="modify">수정</a>
+    <a class="button btn-action" data-action-type="delete">삭제</a>
+    <a class="button" th:href="@{/contents/form}">등록하기</a>
+  </div>
+  <a class="button" onclick="goBack()">뒤로가기</a>
+</div>
   </div>
 
   <!-- 비밀번호 확인용 영역 -->

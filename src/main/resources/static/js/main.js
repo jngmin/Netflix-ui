@@ -1,33 +1,44 @@
+console.log('main.js loaded!');
+
 document.addEventListener('DOMContentLoaded', function() {
-    const genres = ['thriler', 'romance', 'action', 'comedy', 'horror'];
+    // 데이터 속성을 사용한 방법
+    const genres = ['action', 'romance', 'comedy', 'horror', 'thriller']; // 실제 존재하는 장르들
     
     genres.forEach(genre => {
-        const swiperElement = document.getElementById('swiper-' + genre);
+        const swiperElement = document.querySelector('.swiper-' + genre);
+        
         if (swiperElement && swiperElement.querySelector('.swiper-slide')) {
-            new Swiper('#swiper-' + genre, {
-                slidesPerView: 'auto', // 자동으로 보여질 슬라이드 수 계산
-                spaceBetween: 10,
-                freeMode: true,
-                navigation: {
-                    nextEl: '#next-' + genre,
-                    prevEl: '#prev-' + genre,
-                },
-                breakpoints: {
-                    // 반응형 설정
-                    320: {
-                        slidesPerView: 2,
-                        spaceBetween: 10
+            console.log('Found swiper for genre:', genre);
+            
+            // 이미 초기화되었는지 확인
+            if (!swiperElement.classList.contains('swiper-initialized')) {
+                console.log('Initializing Swiper for:', genre);
+                
+                new Swiper('.swiper-' + genre, {
+                    slidesPerView: 5,
+                    slidesPerGroup: 3,
+                    spaceBetween: 20,
+                    freeMode: false,
+                    navigation: {
+                        nextEl: '.nextbtn-' + genre,
+                        prevEl: '.prevbtn-' + genre,
                     },
-                    640: {
-                        slidesPerView: 3,
-                        spaceBetween: 15
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 20
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        640: {
+                            slidesPerView: 3,
+                            spaceBetween: 15
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                            spaceBetween: 20
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 });

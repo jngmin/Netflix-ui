@@ -28,7 +28,10 @@ public interface ContentsClient {
 
     @GetMapping("/api/contents")
     List<ContentResponse> getAllContents();
-
+    
+    @GetMapping("/api/contents/kind/{kind}")
+    List<ContentResponse> getContentsByKind(@PathVariable("kind") String kind);
+    
     @GetMapping("/api/contents/{id}")
     ContentResponse getContentsById(@PathVariable Long id);
 
@@ -67,7 +70,8 @@ public interface ContentsClient {
     
     @PutMapping("/api/contents/{id}")
     ContentResponse updateContentInfo(@PathVariable("id") Long id, @ModelAttribute ContentRequest requestDto);
-
+    
+    
     @DeleteMapping("/api/contents/{id}")
     void deleteContents(@PathVariable("id") Long id);
 }

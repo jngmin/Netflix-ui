@@ -75,12 +75,12 @@
 <body>
 
 <!-- 관리자만 접근 가능 -->
-<!-- <div th:if="${session.type != 'admin'}">
+<div th:if="${session.type != 'admin'}">
     <script th:inline="javascript">
         alert("관리자만 접근 가능합니다.");
         history.back();
     </script>
-</div> -->
+</div>
 
 <div th:if="${session.type == 'admin'}" class="container">
     <p class="title">Spring Boot로 만들어보는 게시판 [[${session.type}]]</p>
@@ -139,7 +139,6 @@
 
         <div class="button-area">
             <button id="btn_regist">게시물 등록</button>
-            <a class="button" th:href="@{/contents}">게시판 목록</a>
         </div>
     </form>
 </div>
@@ -163,7 +162,7 @@
                 cache: false,
                 success: function (response) {
                     alert("등록 성공!");
-                    window.location.href = /*[[@{/movie}]]*/ "";
+                    window.location.href = /*[[@{/contents/movie}]]*/ "";
                 },
                 error: function (error) {
                     console.log("등록 실패", error);

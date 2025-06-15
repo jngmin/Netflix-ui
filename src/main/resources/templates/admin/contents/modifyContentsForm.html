@@ -65,7 +65,7 @@
     <p class="title">Spring Boot로 만들어보는 게시판</p>
 
     <form id="add_form" th:action="@{/contents/modify}" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="contentsid" th:value="${contents.contentsid}" />
+      <input type="hidden" name="id" th:value="${contents.id}" />
 
       <table class="form-table">
         <tr>
@@ -131,33 +131,33 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script type="text/javascript">
+  <script th:inline="javascript">
     $(document).ready(function () {
-      $('#btn_regist').on('click', function (e) {
-        // 전송 자체는 form 기본 동작을 사용하므로, ajax 비활성화하거나 아래 코드 제거 가능
-        var file = $('#add_form')[0].files[0];
-        var formData = new FormData();
-        formData.append("contentsFile", file);
-        $.ajax({
-          type: "post",
-          enctype: 'multipart/form-data',
-          url: '/contents/modify',
-          data: formData,
-          dataType: 'json',
-          processData: false,
-          contentType: false,
-          cache: false,
-          success: function (data) {
-            console.log("success : ", data);
-          },
-          error: function (e) {
-            console.log("error : ", e);
-          }
+        $('#btn_regist').on('click', function (e) {
+            e.preventDefault(); // 폼 기본 제출 막기
+
+            var form = $('#add_form')[0];
+            var formData = new FormData(form); // 전체 폼 데이터 자동 수집
+
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: /*[[@{/contents/modify}]]*/,
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (response) {
+                    alert("수정 성공!");
+                    window.location.href = /*[[@{/contents/movie}]]*/ "";
+                },
+                error: function (error) {
+                    console.log("등록 실패", error);
+                    alert("등록 실패. 다시 시도해주세요. (데이터가 빠진것은 없는지 확인해주세요)");
+                }
+            });
         });
-        // 실제 form 제출이 필요한 경우 아래 e.preventDefault() 주석 처리 필요
-        // e.preventDefault();
-      });
     });
-  </script>
+</script>
 </body>
 </html>

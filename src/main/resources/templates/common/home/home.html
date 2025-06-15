@@ -53,8 +53,8 @@
           <div class="beginword1">
             <h1>
               영화와 시리즈를 무제한으로.
-              <span th:if="${session.type != null and session.type == 'admin'}"
-                    th:text="'(' + session.type + '계정)'"></span>
+              <span th:if="${userType != null and userType == 'admin'}"
+      th:text="|${userType}계정|"></span>
             </h1>
           </div>
           <div class="beginword2">
@@ -67,7 +67,7 @@
             <a th:if="${session.id == null}" th:href="@{/login}">
               <button class="beginbutton">시작하기&gt;</button>
             </a>
-            <a th:if="${session.id != null}" th:href="@{/movie}">
+            <a th:if="${session.id != null}" th:href="@{/contents/movie}">
               <button class="beginbutton">시작하기&gt;</button>
             </a>
           </div>
@@ -95,66 +95,202 @@
       </div>
     </div>
 
-    <div id="downloadintrowrap" class="contentswrap">
+     <div id="watchdeviceintrowrap" class="contentswrap">
       <div class="contents contentswidth">
+        <div class="media">
+          <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png" width="100%" />
+          <div class="mediavideo">
+            <video autoplay="autoplay" muted="muted" loop>
+              <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v" type="video/mp4" />
+            </video>
+          </div>
+        </div>
         <div class="texts">
-          <h2>다양한 디바이스에 저장해 오프라인으로 시청하세요.</h2>
+          <h2>
+            다양한 디바이스에서 시청하세요.
+          </h2>
           <p>
-            좋아하는 콘텐츠를 저장해 두었다가, 인터넷 연결 없이도 즐기세요.
+            각종 영화와 시리즈를 스마트폰, 태블릿, 노트북, TV에서 무제한으로 스트리밍하세요. 추가 요금이 전혀 없습니다.
+          </p>
+        </div>
+      </div>
+      <div class="divider">
+
+      </div>
+    </div>
+    <div id="makekidsprofileintrowrap" class="contentswrap">
+      <div class="contents contentswidth" >
+        <div class="texts">
+          <h2>
+            어린이 전용 프로필을 만들어 보세요.
+          </h2>
+          <p>
+            자기만의 공간에서 좋아하는 캐릭터와 즐기는 신나는 모험. 자녀에게 이 특별한 경험을 선물하세요. 넷플릭스 회원이라면 무료입니다.
           </p>
         </div>
         <div class="media">
-          <img th:src="@{/images/mobile-0819.jpg}" width="100%" alt="mobile" />
-          <div class="mediaimgs">
-            <img th:src="@{/images/boxshot.png}" alt="boxshot" />
-            <div class="mediaword">
-              다운로드 중...
+          <img src="https://occ-0-993-988.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABe3Dqef6rg30BxYraI75i97IeQjD0YxUuToAnSA23dl0XQFrjXaFTWIB0HHy4TH_s094NU-9IjLpE_96AvWpTZTAQOR_icyEYcsB.png?r=acf" width="100%" />
+        </div>
+      </div>
+      <div class="divider">
+
+      </div>
+    </div>
+    <div id="offlinewatchintrowrap" class="contentswrap">
+      <div class="contents contentswidth">
+        <div class="media">
+          <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" width="100%" />
+          <div id="wacthintropos">
+            <div class="image">
+              <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png" />
+
+            </div>
+            <div class="texts">
+              <div class="text1">
+                기묘한 이야기
+              </div>
+              <div class="text2">
+                저장 중...
+              </div>
+            </div>
+            <div class="downloadlogo">
+
+            </div>
+          </div>
+        </div>
+        <div class="texts">
+          <h2>
+            즐겨 보는 콘텐츠를 저장해 오프라인으로 시청하세요.
+          </h2>
+          <p>
+            광고 없는 멤버십에서만 이용 가능합니다.
+          </p>
+        </div>
+
+      </div>
+      <div class="divider">
+
+      </div>
+    </div>
+    <div id="qnaintrowrap">
+      <div class="contents">
+        <div class="qnawrap">
+          <h2 >
+            자주 묻는 질문
+          </h2>
+          <div id="qnacontents" >
+            <ul>
+              <li>
+                <h3 onClick = "dp_menu(1)">
+                  <button>
+                    <span>넷플릭스에서 어떤 콘텐츠를 시청할 수 있나요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+                </div>
+              </li>
+                <li>
+                  <h3 onClick = "dp_menu(2)">
+                    <button>
+                      <span>넷플릭스란 무엇인가요?</span>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                      </svg>
+                    </button>
+                  </h3>
+                  <div id = "qnahiddencontent" class="hideqnahidden">
+                  </div>
+                </li>
+                <li>
+                <h3 onClick = "dp_menu(3)">
+                  <button>
+                    <span>넷플릭스 요금은 얼마인가요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+                 
+                </div>
+              </li>
+              <li>
+                <h3 onClick = "dp_menu(4)">
+                  <button>
+                    <span>광고형 멤버쉽은 뭐가 다른가요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+             
+                </div>
+              </li>
+              <li>
+                <h3 onClick = "dp_menu(5)">
+                  <button>
+                    <span>어디에서 시청할 수 있나요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+                 
+                </div>
+              </li>
+              <li>
+                <h3 onClick = "dp_menu(6)">
+                  <button>
+                    <span>멤버쉽을 해지하려면 어떻게 하나요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+              
+                </div>
+              </li>
+              <li>
+                <h3 onClick = "dp_menu(7)">
+                  <button>
+                    <span>아이들이 넷플릭스를 봐도 좋을까요?</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </h3>
+                <div id = "qnahiddencontent" class="hideqnahidden">
+                
+                </div>
+              </li>
+            </ul>
+            <div class = "inputemailwrap">
+              <div class = "inputemailinside">
+                <form class = "inputemailform">
+                  <h3> 시청할 준비가 되셨나요?   </h3>
+                    <a href = "/series">
+                  <div class = "inputemail">
+                   
+                  
+                    <button class="beginbutton">
+                      시작하기>
+                    </button>
+                   
+                  </div>
+                   </a>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div id="watchanywherewrap" class="contentswrap">
-      <div class="contents contentswidth">
-        <div class="texts">
-          <h2>어디서나 시청하세요.</h2>
-          <p>
-            스마트폰, 태블릿, 노트북, TV 등 원하는 기기에서 시청할 수 있습니다.
-          </p>
-        </div>
-        <div class="media">
-          <img th:src="@{/images/device-pile.png}" width="100%" alt="devices" />
-        </div>
-      </div>
-    </div>
-
-    <div id="childrenwrap" class="contentswrap">
-      <div class="contents contentswidth">
-        <div class="texts">
-          <h2>자녀를 위한 맞춤 설정</h2>
-          <p>
-            자녀가 안심하고 볼 수 있도록 다양한 보호 기능을 제공합니다.
-          </p>
-        </div>
-        <div class="media">
-          <img th:src="@{/images/for-kids.png}" width="100%" alt="for kids" />
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <div class="footercon">
-        <div class="footersubcon">
-          <a href="#">넷플릭스 소개</a>
-          <a href="#">고객 센터</a>
-          <a href="#">이용 약관</a>
-          <a href="#">개인정보 처리방침</a>
-          <a href="#">문의하기</a>
-        </div>
-        <p>넷플릭스서 포기하지 않고 최선을 다하는 당신을 응원합니다.</p>
-      </div>
-    </footer>
   </div>
 </body>
 </html>

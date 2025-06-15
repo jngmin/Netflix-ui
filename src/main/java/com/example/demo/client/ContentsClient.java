@@ -30,7 +30,7 @@ public interface ContentsClient {
     List<ContentResponse> getAllContents();
 
     @GetMapping("/api/contents/{id}")
-    ContentResponse getContentsById(@PathVariable("id") Long id);
+    ContentResponse getContentsById(@PathVariable Long id);
 
     @PostMapping("/api/contents/json")
     ContentResponse createContents(@RequestBody Contents contents);

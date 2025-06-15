@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: netflix-ui    
+    
+  datasource:
+    url: jdbc:mysql://223.130.162.28:30100/bookdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&authenticationPlugins=com.mysql.cj.protocol.a.authentication.MysqlNativePasswordPlugin
+    username: root
+    password: rootpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect    
+
+server:
+  port: 8097
+  
+  
+  
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+
+
+    
+logging:
+  path: /tmp/thyme/logs    
+      

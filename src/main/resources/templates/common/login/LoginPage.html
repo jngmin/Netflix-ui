@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/login.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/Common.css}" />
+<title>Netflix</title>
+</head>
+<body>
+  <div id="mainwrap">
+    <div id="headerwrap">
+      <header>
+        <a th:href="@{/}">
+          <div class="icon">
+            <img th:src="@{/web/images/headericon.png}" alt="header icon" />
+          </div>
+        </a>
+      </header>
+    </div>
+
+    <div class="login-back">
+      <img class="login-backimg"
+           th:src="@{https://assets.nflxext.com/ffe/siteui/vlv3/ceb3b1eb-2673-4dd9-a6e3-0cd7a5e130ee/d110b57b-6acd-48f7-9626-01e92c747b19/KR-ko-20230522-popsignuptwoweeks-perspective_alpha_website_small.jpg}"
+           srcset="https://assets.nflxext.com/ffe/siteui/vlv3/ceb3b1eb-2673-4dd9-a6e3-0cd7a5e130ee/d110b57b-6acd-48f7-9626-01e92c747b19/KR-ko-20230522-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w,
+                   https://assets.nflxext.com/ffe/siteui/vlv3/ceb3b1eb-2673-4dd9-a6e3-0cd7a5e130ee/d110b57b-6acd-48f7-9626-01e92c747b19/KR-ko-20230522-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w,
+                   https://assets.nflxext.com/ffe/siteui/vlv3/ceb3b1eb-2673-4dd9-a6e3-0cd7a5e130ee/d110b57b-6acd-48f7-9626-01e92c747b19/KR-ko-20230522-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
+           alt="login background" />
+      <div class="login-backgrad"></div>
+
+      <div class="login-box">
+        <div class="login-contents-box">
+          <h2 class="login-contents-name">로그인</h2>
+          <form id="login-form" th:action="@{/login}" method="post">
+            <input type="text" placeholder="이메일 주소" name="username" class="logininput required" title="아이디" />
+            <div class="alarm" style="display:none;">이메일 주소를 입력해주세요.</div>
+            <input type="password" placeholder="비밀번호" name="password" class="logininput required" title="비밀번호" />
+            <div class="alarm" style="display:none;">비밀번호를 입력해주세요.</div>
+            <button class="loginbutton" type="submit">로그인</button>
+            <div class="login-joincon">
+              <span>Netflix 회원이 아니신가요?</span>
+              <a th:href="@{/join}"><span>회원 가입하기</span></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // 엔터키로 로그인 버튼 클릭 처리
+    $('#login-form input').on('keyup', function(e){
+      if(e.keyCode == 13){
+        e.preventDefault();
+        $('.loginbutton').click();
+      }
+    });
+
+    $('.loginbutton').on('click', function(e) { 
+      e.preventDefault();
+
+      // 폼 유효성 검사
+      var validTF = true;
+      $('#login-form .required').each(function() {
+        if ($.trim($(this).val()) === '') {
+          alert($(this).attr('title') + '을(를) 입력해주세요.');
+          $(this).siblings('div.alarm').show();
+          validTF = false;
+          return false;
+        } else {
+          $(this).siblings('div.alarm').hide();
+        }
+      });
+      if (!validTF) {
+        return false;
+      }
+
+      // JSON 형식으로 Ajax 요청
+      $.ajax({
+        url: '/login',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          username: $('input[name="username"]').val(),
+          password: $('input[name="password"]').val()
+        }),
+        success: function(data) {
+        	console.log(data);
+          if ('error' in data) {
+        	  alert(data.result_msg || '로그인 실패');
+
+} else {
+	 location.href = "/classify";
+
+}
+        },
+        error: function(xhr, status, error){
+          console.error('에러 발생:', xhr.responseText || error);
+          alert('로그인 중 문제가 발생했습니다.');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

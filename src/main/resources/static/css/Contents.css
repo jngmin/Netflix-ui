@@ -1,0 +1,396 @@
+@import "reset.css";
+a{
+	text-decoration:none;
+	color:white;
+}
+#headerwrap{
+  width:100%;
+  height:70px;
+  position:fixed;
+  top:0;
+  z-index:2;
+  transition: background-color 1s;
+}
+body{
+	background-color: black;
+}
+#maindetailwrap {
+  background-color: black;
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding:0px;
+  flex-direction: column;
+  height:auto;
+  
+}
+#mainwrap{
+  background-color: black;
+  width:100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding:0px;
+  flex-direction: column;
+}
+.headernotscroll{
+  background-color: transparent;
+ 
+}
+.headerscroll{
+  background-color: black;
+  transition: 0.3s;
+}
+.menu-nav{
+  padding: 0 4%;
+  height:70px;
+  display: flex;
+  background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+  align-items: center;
+
+}
+#headerwrap .icon{
+  cursor: pointer;
+    display: inline-block;
+    margin-right: 1.8rem;
+}
+#headerwrap .icon img{
+  width: 6rem;
+    height: 1.6rem;
+}
+.prinav{
+  align-items: center;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1vw;
+ 
+}
+.prinavtab{
+  margin-left:18px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 300;
+}
+.prinavtab:hover{
+  color: #e5e5e5;
+  transition: .5s;
+}
+.endnavbar{
+  align-items: center;
+    display: flex;
+    flex-grow: 1;
+    height: 70px;
+    justify-content: flex-end;
+    position:absolute;
+    right: 4%;
+    top: 0;
+}
+.endnavelement{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.searchtab{
+  color:#fff;
+  padding: 1px 6px;
+
+}
+.accountmenuitem{
+  display: block;
+    font-size: 12px;
+    position: relative;
+    z-index: 0;
+}
+.accountdropdownbtn{
+  display: flex;
+  align-items: center;
+  width:100%;
+}
+.accountimg{
+  position:relative;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+}
+.caret{
+  border-color: #fff transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    height: 0;
+    margin-left: 10px;
+    transition: transform 367ms cubic-bezier(.21,0,.07,1);
+    width: 0;
+}
+.billcon{
+  display: block;
+    position: relative;
+    width: 100%;
+}
+.billrow{
+  left: 0;
+  position: relative;
+  right: 0;
+  top: 0;
+  margin-bottom: 20px;
+    padding-bottom: 40%;
+}
+.billboardwrap{
+  background-color: #000;
+  height: 56.25vw;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  top: 0;
+}
+.billboardimgwrap{
+  position: absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+.billboardimg{
+  left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .4s cubic-bezier(.665,.235,.265,.8) 0s;
+    width: 100%;
+    background-position: 50%;
+    background-size: cover;
+    bottom: 0;
+}
+.fillcontainer{
+  bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+.billboardinfowrap{
+  position:absolute;
+  left:4%;
+  top:0;
+  bottom:35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width:36%;
+}
+.billboardtitleimg{
+  margin-bottom: 1.2vw;
+    min-height: 13.2vw;
+    position: relative;
+    top:-10%;
+  
+}
+.billboardgrad{
+  background: linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%);
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  right: 26.09%;
+  top: 0;
+  transition: opacity .5s
+}
+.billboardsummary{
+  color: #fff;
+  font-size: 16px;
+}
+.bottomgrad{
+  background-color: transparent;
+  background-image: linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#141414 68%,#141414);
+  background-position: 0 top;
+  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  bottom: -1px;
+  height: 14.7vw;
+  opacity: 1;
+  top: auto;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 8;
+}
+.swiper {
+    color: white;
+    width: 100% !important; /* 부모 컨테이너 너비로 제한 */
+    height: 200px; /* 적절한 높이 설정 */
+    overflow: hidden; /* 넘치는 부분 숨김 - 중요! */
+    position: relative;
+}
+
+.movie-row {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 3vw 0;
+    padding: 0;
+    z-index: 1;
+    position: relative;
+    overflow: hidden; /* 추가: 자식 요소가 넘치지 않도록 */
+}
+
+.movie-row__title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0px 0px 20px 20px;
+}
+
+.movie-row__carousel {
+    position: relative;
+    display: flex;
+    width: 100%; /* 명시적 너비 설정 */
+    overflow: hidden; /* 추가: 넘치는 부분 숨김 */
+}
+
+/* Swiper 래퍼와 슬라이드 설정 */
+.swiper-wrapper {
+    display: flex;
+    width: 100%;
+    transition-timing-function: linear;
+}
+
+.swiper-slide {
+    flex-shrink: 0; /* 슬라이드가 줄어들지 않도록 */
+    width: 200px !important; /* 각 슬라이드의 고정 너비 */
+    height: 180px; /* 슬라이드 높이 */
+    margin-right: 10px; /* 슬라이드 간격 */
+}
+
+.swiperimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+    transition: 0.3s;
+    border-radius: 4px; /* 넷플릭스 스타일 */
+}
+
+.swiperimg:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    z-index: 200;
+}
+
+/* 네비게이션 버튼 스타일링 */
+.swiper-button-prev,
+.swiper-button-next {
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 16px;
+}
+
+.button-area {
+    position: absolute;
+    right: 10px;
+}
+
+/* 빈 콘텐츠 메시지 스타일 */
+.movie-row__empty {
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 16px;
+}
+
+ #detailwrap{
+ 	display:flex;
+ 	width:100%;
+ 	margin-top:70px;
+ 	height: calc(100% - 70px);
+ }
+ .detailinfowrap{
+ 	width: 950px;
+ 	display:flex;
+ 	flex-direction:column;
+ 	height:80%;
+ 	margin-top:50px;
+ 	color: white;
+ 	margin-left:40px;
+ }
+ .detailposterwrap{
+ 	    width: 500px;
+    background-color: black;
+    height: 400px;
+    margin-top: 50px;
+    margin-right: 50px;
+ }
+ .detailinfocon{
+ display:flex;
+ height:50px;
+ align-items:center;
+ }
+ .detailinfotitle{
+ 	width:50%;
+ 	text-align:center;
+ 	font-size:2.0rem;
+ 	text-align:left;
+ 	margin-left:40px;
+ }
+ .detailinfogenre{
+ 	width:50%;
+ 	text-align:left;
+ 	height:40%;
+ }
+ .detailinfoyear{
+ 	width:20%;
+ 	text-align:center;
+ 	font-size:1.5rem;
+ 	text-align:left;
+ 	margin-left:40px;
+ }
+ .detailinforun{
+ 	width:70%;
+ 	text-align:left;
+
+ 	font-size:1.5rem;
+ }
+ .detailinfodirec{
+ 	margin-left:40px;
+ 	text-align:left;
+ 	margin-top:50px;
+ 	font-size:1.0rem;
+ 	width:100%;
+ }
+ .detailinfosum{
+margin-left:40px;
+font-size:1.0rem;
+ 	margin-top:30px;
+ 	height:40%;
+ 	line-height: 30px;
+ }
+ .detailinfohits{
+ margin-left:40px;
+font-size:1.0rem;
+margin-top:30px;
+ }
+ .swiperimg{
+ width:100%;
+ height:100%;
+transition:0.3s;
+ }
+ .swiperimg:hover{
+ transform: scale(1.1);
+ transition:0.3s;
+  z-index:200;
+ }
+ .button-area{
+ 	position:absolute;
+ 	right:10px;
+ }

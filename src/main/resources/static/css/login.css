@@ -1,0 +1,152 @@
+.login-back{
+	background-size: cover;
+    display: block;
+    height: 100%;
+    min-height: 186vh;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+   z-index:2;
+   
+    
+    
+}
+#mainwrap {
+ background-color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0px;
+    flex-direction: column;
+  
+}
+button:hover{
+	background: #990000;
+    transition: 0.3s;
+    cursor:pointer;
+}
+#headerwrap{
+  width:100%;
+  display:flex;
+  box-sizing: inherit;
+  align-items: center;
+  justify-content: center;
+  margin-top:24px;
+  margin-left: 0px;
+  padding: 0 1.5rem;
+  flex:1;
+
+      z-index:3;
+
+}
+#headerwrap header{
+  box-sizing: inherit;
+  display:inline-flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top:-16px;
+  margin-left: -16px;
+  height:5.375rem;
+  padding:0px;
+
+}
+#headerwrap .icon{
+ display: flex;
+ box-sizing: inherit;
+ padding:0px;
+ margin-left: 16px; 
+ width: auto;
+ flex: 0 0 calc(33.333333333333336% - 16px);
+}
+#headerwrap .icon img{
+  width: 9.25rem;
+  height: 2.5rem;
+}
+.login-backimg{
+		    min-height: 100%;
+    min-width: 100%;
+}
+.login-backgrad{
+	background: linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%);
+    background-position: 0 top;
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    min-height: 100%;
+    min-width: 100%;
+    top:0;
+    position:absolute;
+}
+.login-box{
+	width:25rem;
+	height:45%;
+	background-color:black;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-top: 15px;
+	transform: translate(-50%);
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	border-radius:10px;
+	background-color: rgba(0,0,0,.75);
+}
+.login-contents-box{
+	width:25rem;
+	height:90%;
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+		align-items: center;
+		background-color: rgba(0,0,0,.75);
+}
+.login-contents-name {
+	font-size: 23px;
+	width: 75%;
+	height:5%;
+	color: white;
+	
+}
+#login-form{
+	width:80%;
+	height:60%;
+	
+}
+.logininput {
+ width: calc(100% - 10px);
+  height: 40px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: #333;
+  margin-top:15px;
+  color:white;
+}
+.loginbutton{
+	width: 100%;
+	height:60px;
+	text-align:center;
+	border-radius: 15px;
+	margin-top:20px;
+	 font-size: 15px;
+	background-color:#e50914;
+	 color:white;
+}
+.login-joincon{
+	width:100%;
+	color: white;
+	 font-size: 15px;
+	 margin-top:100px;
+	text-align:center;
+}
+.login-joincon a{
+	margin-left:13px;
+	color:white;
+	
+}

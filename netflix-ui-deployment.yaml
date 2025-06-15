@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netflix-ui
+  template:
+    metadata:
+      labels:
+        app: netflix-ui
+    spec:
+      containers:
+      - name: netflix-ui
+        image: juu0/netflix-ui:latest
+        ports:
+        - containerPort: 8097
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "256Mi"       
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-ui-service
+spec:
+  selector:
+    app: netflix-ui
+  ports:
+  - protocol: TCP
+    port: 8097
+    targetPort: 8097
+    nodePort: 30409
+  type: NodePort

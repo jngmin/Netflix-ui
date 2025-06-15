@@ -27,10 +27,10 @@ import com.example.demo.entity.Contents;
 public interface ContentsClient {
 
     @GetMapping("/api/contents")
-    List<Contents> getAllContents();
+    List<ContentResponse> getAllContents();
 
     @GetMapping("/api/contents/{id}")
-    ContentResponse  getContentsById(@PathVariable("id") Long id);
+    ContentResponse getContentsById(@PathVariable("id") Long id);
 
     @PostMapping("/api/contents/json")
     ContentResponse createContents(@RequestBody Contents contents);

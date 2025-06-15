@@ -32,14 +32,14 @@ public class ContentsController {
 
 	@GetMapping("/movie")
 	public String getMovieList(Model model) {
-		List<Contents> contentsList = contentsClient.getAllContents();
+		List<ContentResponse> contentsList = contentsClient.getAllContents();
 		List<String> genres = List.of("thriler", "romance", "action", "comedy", "horror");
 		System.out.println("전체 콘텐츠 수: " + contentsList.size());
 
 		// 장르별 콘텐츠 리스트를 Map으로 분류
-		Map<String, List<Contents>> contentsByGenre = new HashMap<>();
+		Map<String, List<ContentResponse>> contentsByGenre = new HashMap<>();
 		for (String genre : genres) {
-			List<Contents> filtered = contentsList.stream().filter(c -> genre.equalsIgnoreCase(c.getGenre()))
+			List<ContentResponse> filtered = contentsList.stream().filter(c -> genre.equalsIgnoreCase(c.getGenre()))
 					.collect(Collectors.toList());
 
 			System.out.println("장르: " + genre + ", 콘텐츠 수: " + filtered.size());

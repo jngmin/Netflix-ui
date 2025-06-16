@@ -47,8 +47,8 @@ public class ContentsController {
 
 			contentsByGenre.put(genre, filtered);
 		}
-		System.out.println("=== 최종 contentsByGenre ===");
-		contentsByGenre.forEach((k, v) -> System.out.println("장르: " + k + ", 콘텐츠 수: " + v.size()));
+		// System.out.println("=== 최종 contentsByGenre ===");
+		// contentsByGenre.forEach((k, v) -> System.out.println("장르: " + k + ", 콘텐츠 수: " + v.size()));
 
 		model.addAttribute("genres", genres);
 		model.addAttribute("contentsByGenre", contentsByGenre);
@@ -82,7 +82,7 @@ public class ContentsController {
 	    ContentResponse response = contentsClient.createContentInfo(requestDto);
 	    contentsClient.uploadPoster(response.getId(), contentsFile);
 	    
-	    return "redirect:/";
+	    return "redirect:/contents/" + kind;
 	}
 	
 	@PostMapping("/contents/delete")

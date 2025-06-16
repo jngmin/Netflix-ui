@@ -31,10 +31,8 @@
         <div class="login-contents-box">
           <h2 class="login-contents-name">로그인</h2>
           <form id="login-form" th:action="@{/login}" method="post">
-            <input type="text" placeholder="이메일 주소" name="username" class="logininput required" title="아이디" />
-            <div class="alarm" style="display:none;">이메일 주소를 입력해주세요.</div>
+            <input type="text" placeholder="아이디" name="username" class="logininput required" title="아이디" />
             <input type="password" placeholder="비밀번호" name="password" class="logininput required" title="비밀번호" />
-            <div class="alarm" style="display:none;">비밀번호를 입력해주세요.</div>
             <button class="loginbutton" type="submit">로그인</button>
             <div class="login-joincon">
               <span>Netflix 회원이 아니신가요?</span>
@@ -62,14 +60,12 @@
 
       // 폼 유효성 검사
       var validTF = true;
+      
       $('#login-form .required').each(function() {
         if ($.trim($(this).val()) === '') {
           alert($(this).attr('title') + '을(를) 입력해주세요.');
-          $(this).siblings('div.alarm').show();
           validTF = false;
           return false;
-        } else {
-          $(this).siblings('div.alarm').hide();
         }
       });
       if (!validTF) {

@@ -30,7 +30,7 @@
         <div class="login-contents-box">
           <h2 class="login-contents-name">회원가입</h2>
           <form class="login-form" th:action="@{/join/new}" method="post">
-            <input type="text" placeholder="이메일 주소" name="username" class="logininput" />
+            <input type="text" placeholder="아이디" name="username" id="username" class="logininput" />
             <input type="password" placeholder="비밀번호" name="password" class="logininput" />
             <input type="text" placeholder="주소" name="address" class="logininput" />
             <input type="number" placeholder="나이" name="age" class="logininput" />
@@ -45,34 +45,53 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
   $(document).ready(function() {
-    $('.loginbutton').on('click', function(e) {
-      e.preventDefault();
+	  $('.loginbutton').on('click', function(e) {
+		  e.preventDefault();
 
-      let validTF = true;
-      let message = '';
-      let focusTarget = null;
+		  let validTF = true;
+		  let message = '';
+		  let focusTarget = null;
 
-      $('.login-form .logininput').each(function() {
-        const val = $.trim($(this).val());
-        const label = $(this).attr('placeholder');
+		  $('.login-form .logininput').each(function() {
+		    const val = $.trim($(this).val());
+		    const label = $(this).attr('placeholder');
 
-        if (val === '') {
-          message = label + '을(를) 입력해주세요.';
-          focusTarget = this;
-          validTF = false;
-          return false; // each 탈출
-        }
-      });
+		    if (val === '') {
+		      message = label + '을(를) 입력해주세요.';
+		      focusTarget = this;
+		      validTF = false;
+		      return false;
+		    }
+		  });
 
-      if (!validTF) {
-        alert(message);
-        $(focusTarget).focus();
-        return;
-      }
+		  if (!validTF) {
+		    alert(message);
+		    $(focusTarget).focus();
+		    return;
+		  }
 
-      $('.login-form').submit();
-    });
+		  const username = $('#username').val().trim();
+
+		  $.ajax({
+		    url: '/check-username',
+		    type: 'GET',
+		    data: { username: username },
+		    success: function (exists) {
+		      console.log('[DEBUG] Ajax 응답 성공:', exists);
+		      if (exists === true) {
+		        alert('중복된 아이디입니다. 다른 아이디을 입력해주세요.');
+		        $('#username').focus();
+		      } else {
+		        $('.login-form').submit();
+		      }
+		    },
+		    error: function (xhr, status, error) {
+		      alert('중복 확인 중 오류가 발생했습니다.');
+		    }
+		  });
+		});
   });
 </script>
+
 </body>
 </html>

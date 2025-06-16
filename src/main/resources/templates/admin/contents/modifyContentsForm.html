@@ -110,7 +110,7 @@
 
           <th>포스터</th>
           <td>
-            <input type="file" name="contentsFile" />
+            <input type="file" id="contentsFile" name="contentsFile" />
           </td>
         </tr>
 
@@ -133,6 +133,17 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script th:inline="javascript">
     $(document).ready(function () {
+    	
+    	$('#contentsFile').on('change', function () {
+   		  const file = this.files[0];
+   		  const maxSize = 1 * 1024 * 1024; // 1MB
+
+   		  if (file && file.size > maxSize) {
+   		    alert('1MB 미만의 파일만 업로드 가능합니다.');
+   		    $(this).val(''); // 선택 취소
+   		  }
+    	});
+    	
         $('#btn_regist').on('click', function (e) {
             e.preventDefault(); // 폼 기본 제출 막기
 

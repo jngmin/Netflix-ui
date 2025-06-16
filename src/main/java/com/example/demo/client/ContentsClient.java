@@ -37,18 +37,6 @@ public interface ContentsClient {
 
     @PostMapping("/api/contents/json")
     ContentResponse createContents(@RequestBody Contents contents);
-
-    @PostMapping(value = "/api/contents", consumes = "multipart/form-data")
-    ContentResponse createContents(
-        @RequestParam("title") String title,
-        @RequestParam("genre") String genre,
-        @RequestParam("director") String director,
-        @RequestParam("year") Integer year,
-        @RequestParam("running") Integer running,
-        @RequestParam("summary") String summary,
-        @RequestParam("kind") String kind,
-        @RequestParam(value = "contentsFile", required = false) MultipartFile file
-    );
     
     @PostMapping("/api/contents/info")
     ContentResponse createContentInfo(@RequestBody ContentRequest requestDto);

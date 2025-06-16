@@ -30,6 +30,13 @@ public class UserController {
         return "common/login/LoginPage"; // Thymeleaf 경로
     }
 
+    // 아이디 중복 확인
+    @ResponseBody
+    @GetMapping("/check-username")
+    public Boolean checkUsername(@RequestParam String username) {
+        return userClient.existsByUsername(username);
+    }
+    
     // 로그인 Ajax 요청 처리
     @ResponseBody
     @PostMapping("/login")

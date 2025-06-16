@@ -81,13 +81,13 @@ button:hover{
     position:absolute;
 }
 .login-box{
-	width:25rem;
-	height:45%;
+	width:28rem;
+	height:43%;
 	background-color:black;
 	position:absolute;
 	left:50%;
 	top:50%;
-	margin-top: 15px;
+	margin-top: 25px;
 	transform: translate(-50%);
 	display:flex;
 	justify-content:center;
@@ -96,7 +96,7 @@ button:hover{
 	background-color: rgba(0,0,0,.75);
 }
 .login-contents-box{
-	width:25rem;
+	width:27rem;
 	height:90%;
 	display:flex;
 	justify-content:center;
@@ -106,14 +106,13 @@ button:hover{
 }
 .login-contents-name {
 	font-size: 23px;
-	width: 75%;
+	width: 90%;
 	height:5%;
 	color: white;
 	
 }
 #login-form{
-	width:80%;
-	height:60%;
+	width:90%;
 	
 }
 .logininput {

@@ -1,10 +1,15 @@
 package com.example.demo.client;
 
-
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dto.user.CheckPasswordRequest;
 import com.example.demo.dto.user.LoginRequest;
 import com.example.demo.dto.user.RegisterRequest;
 import com.example.demo.dto.user.UserInfoResponse;
@@ -30,8 +35,9 @@ public interface UserClient {
     @PostMapping("/logout")
     void logout();
     
+    // 비밀번호 확인
     @PostMapping("/check-password")
-    public ResponseEntity<Boolean> checkPassword(@RequestBody LoginRequest requestDto);
+    public Boolean checkPassword(@RequestBody CheckPasswordRequest requestDto);
 
     // 사용자 정보 조회 (마이페이지)
     @GetMapping("/{id}/mypage")

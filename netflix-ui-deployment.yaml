@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: netflix-ui
-        image: uiw00/netflix-ui:v4
+        image: uiw00/netflix-ui:v9
         ports:
         - containerPort: 8097
         resources:

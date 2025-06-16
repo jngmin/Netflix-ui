@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,16 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.client.ContentsClient;
-import com.example.demo.entity.Contents;
+import com.example.demo.dto.contents.ContentRequest;
+import com.example.demo.dto.contents.ContentResponse;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-
-import com.example.demo.dto.contents.*;
 @Slf4j
 @Controller
 public class ContentsController {
@@ -64,34 +61,7 @@ public class ContentsController {
 	public String addContentsForm() {
 		return "admin/contents/addContentsForm";
 	}
-/*
-	@PostMapping("/contents/new")
-	public String registerContents(   @RequestParam("title") String title,
-	        @RequestParam("genre") String genre,
-	        @RequestParam("director") String director,
-	        @RequestParam("year") Integer year,
-	        @RequestParam("running") Integer running,
-	        @RequestParam("summary") String summary,
-	        @RequestParam("kind") String kind,
-	        @RequestParam(value = "contentsFile", required = false) MultipartFile contentsFile) {
-	    ContentRequest requestDto = new ContentRequest(title, genre, director, year, running, summary, kind);
-	    System.out.println("=== 받은 파라미터들 ===");
-	    System.out.println("title: " + title);
-	    System.out.println("genre: " + genre);
-	    System.out.println("director: " + director);
-	    System.out.println("year: " + year);
-	    System.out.println("running: " + running);
-	    System.out.println("summary: " + summary);
-	    System.out.println("kind: " + kind);
-	    System.out.println("file: " + (contentsFile != null ? contentsFile.getOriginalFilename() : "null"));
-	    
-	    System.out.println("=== 생성된 DTO ===");
-	    System.out.println(requestDto);
-		contentsClient.createContents(requestDto, contentsFile);
 
-		return "redirect:/"; // 목록 페이지로 리디렉션
-	}
-*/
 	@PostMapping("/contents/new")
 	public String registerContents(
 	    @RequestParam("title") String title,
@@ -116,9 +86,9 @@ public class ContentsController {
 	}
 	
 	@PostMapping("/contents/delete")
-	public String deleteContents(@RequestParam Long id) {
+	public String deleteContents(@RequestParam Long id, @RequestParam String kind) {
 		contentsClient.deleteContents(id);
-		return "redirect:/";
+		return "redirect:/contents/" + kind;
 	}
 
 	@PostMapping("/contents/modifyForm")
@@ -130,13 +100,13 @@ public class ContentsController {
 
 	@PostMapping("/contents/modify")
 	public String modifyContents(
-			@RequestParam("id") Long id, 
+			@RequestParam("id") Long id,
 			@ModelAttribute ContentRequest requestDto,
 			@RequestPart(value = "contentsFile", required = false) MultipartFile contentsFile) {
 
 		ContentResponse response =  contentsClient.updateContentInfo(id, requestDto);
 		contentsClient.uploadPoster(response.getId(), contentsFile);
-		return "redirect:/";
+		return "redirect:/contents/" + requestDto.getKind();
 	}
 
 	@GetMapping("/contents/detail")
@@ -145,13 +115,4 @@ public class ContentsController {
 		model.addAttribute("content", content);
 		return "common/contents/ContentsDetail";
 	}
-
-	@ResponseBody
-	@PostMapping("/contents/checkPassword")
-	public boolean checkPassword(@RequestParam Long contentid, @RequestParam String password) {
-		// API에 맞게 check password 호출 로직 조정 필요 (현재 ContentsClient엔 해당 API 없음)
-		// 예를 들어, 별도 API를 추가해야 할 수 있음
-		return true; // 임시 처리
-	}
-
 }

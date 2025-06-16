@@ -1,15 +1,22 @@
 package com.example.demo.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.demo.client.UserClient;
+import com.example.demo.dto.user.CheckPasswordRequest;
 import com.example.demo.dto.user.LoginRequest;
 import com.example.demo.dto.user.RegisterRequest;
 import com.example.demo.dto.user.UserResponse;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,7 +45,7 @@ public class UserController {
 
         return user;
     }
-
+    
     // 로그아웃 처리
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
@@ -66,6 +73,14 @@ public class UserController {
     @GetMapping("/classify")
     public String classify() {
         return "redirect:/";
+    }
+    
+    // 비밀번호 확인
+    @ResponseBody
+    @PostMapping("/checkPassword")
+    public Boolean checkPassword(@RequestParam Long id, @RequestParam String password) {
+        CheckPasswordRequest requestDto = new CheckPasswordRequest(id, password);
+        return userClient.checkPassword(requestDto);
     }
 }
 

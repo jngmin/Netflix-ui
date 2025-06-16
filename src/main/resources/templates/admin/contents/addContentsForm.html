@@ -139,6 +139,7 @@
 
         <div class="button-area">
             <button id="btn_regist">게시물 등록</button>
+            <a class="button" onclick="history.back()">취소</a>
         </div>
     </form>
 </div>
@@ -148,6 +149,24 @@
     $(document).ready(function () {
         $('#btn_regist').on('click', function (e) {
             e.preventDefault(); // 폼 기본 제출 막기
+            
+            const requiredFields = [
+                { selector: 'input[name="title"]', label: '제목' },
+                { selector: 'input[name="director"]', label: '감독' },
+                { selector: 'input[name="year"]', label: '연도' },
+                { selector: 'select[name="genre"]', label: '장르' },
+                { selector: 'input[name="running"]', label: '러닝타임' },
+                { selector: 'textarea[name="summary"]', label: '줄거리' }
+              ];
+
+              for (let field of requiredFields) {
+                const $el = $(field.selector);
+                if (!$el.val() || $el.val().trim() === '') {
+                  alert(field.label + '을(를) 입력해주세요.');
+                  $el.focus();
+                  return;
+                }
+              }
 
             var form = $('#add_form')[0];
             var formData = new FormData(form); // 전체 폼 데이터 자동 수집
@@ -161,12 +180,12 @@
                 contentType: false,
                 cache: false,
                 success: function (response) {
-                    alert("등록 성공!");
+                    alert("콘텐츠가 등록되었습니다.");
                     window.location.href = /*[[@{/contents/movie}]]*/ "";
                 },
                 error: function (error) {
                     console.log("등록 실패", error);
-                    alert("등록 실패. 다시 시도해주세요.");
+                    alert("콘텐츠 등록에 실패했습니다. 다시 시도해주세요.");
                 }
             });
         });

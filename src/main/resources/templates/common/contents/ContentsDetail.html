@@ -132,8 +132,10 @@ div.check-wrap div.check-form {
           <tr>
             <th>비밀번호</th>
             <td>
-              <input type="hidden" id="board_seq" name="id" th:value="${content.id}" />
-              <input type="password" id="board_password" class="initialized" placeholder="관리자 계정 비밀번호를 입력해주세요." style="width: 400px;" />
+              <input type="hidden" id="content_id" name="id" th:value="${content.id}" />
+              <input type="hidden" id="user_id" name="id" th:value="${session.id}" />
+              <input type="hidden" id="kind" name="kind" th:value="${content.kind}" />
+              <input type="password" id="user_password" class="initialized" placeholder="관리자 계정 비밀번호를 입력해주세요." style="width: 400px;" />
             </td>
           </tr>
         </table>
@@ -172,31 +174,40 @@ div.check-wrap div.check-form {
     });
 
     $('#btn_check_password').on('click', function() {
-      $.ajax({
-        url: '/contents/checkPassword',
-        type: 'POST',
-        data: {
-          contentid: $('#board_seq').val(),
-          password: $('#board_password').val()
-        },
-        success: function (data) {
-          if (data === true) {
-            const action_type = $('#action_type').val();
-            if (action_type === 'modify') {
-              $('#action_form').attr('action', '/contents/modifyForm').submit();
-            } else if (action_type === 'delete') {
-              $('#action_form').attr('action', '/contents/delete').submit();
-            }
-          } else {
-            alert('비밀번호가 일치하지 않습니다.');
-          }
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    });
-  });
+    	  const password = $('#user_password').val();
+
+    	  if (!password || password.trim() === '') {
+    	    alert('비밀번호를 입력해주세요.');
+    	    $('#user_password').focus();
+    	    return;
+    	  }
+
+    	  $.ajax({
+    	    url: '/checkPassword',
+    	    type: 'POST',
+    	    data: {
+    	      contentid: $('#content_id').val(),
+    	      id: $('#user_id').val(),
+    	      password: password
+    	    },
+    	    success: function (data) {
+    	      if (data === true) {
+    	        const action_type = $('#action_type').val();
+    	        if (action_type === 'modify') {
+    	          $('#action_form').attr('action', '/contents/modifyForm').submit();
+    	        } else if (action_type === 'delete') {
+    	          $('#action_form').attr('action', '/contents/delete').submit();
+    	        }
+    	      } else {
+    	        alert('비밀번호가 일치하지 않습니다.');
+    	      }
+    	    },
+    	    error: function(error) {
+    	      console.log(error);
+    	    }
+    	  });
+    	});
+  	});
 </script>
 </body>
 </html>
